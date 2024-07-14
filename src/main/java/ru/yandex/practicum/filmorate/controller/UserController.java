@@ -40,7 +40,7 @@ public class UserController {
             throw new ValidationException("В логине присутсвуют неразрешенные символы (пробелы)");
         }
         if (user.getBirthday() != null && user.getBirthday().isAfter(LocalDate.now())) {
-            log.warn("Birthday из будущего");
+            log.warn("Birthday не может быть больше текущей даты");
             throw new ValidationException("Некорректная дата рождения");
         }
     }
