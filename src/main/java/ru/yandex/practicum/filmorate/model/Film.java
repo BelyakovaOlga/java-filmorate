@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Data
 @Builder
-@FieldDefaults(level= AccessLevel.PRIVATE)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Film {
     Long id;
     String name;
