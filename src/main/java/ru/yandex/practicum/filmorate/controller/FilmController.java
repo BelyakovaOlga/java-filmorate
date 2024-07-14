@@ -26,7 +26,7 @@ public class FilmController {
 
     private void validateDataOfFilm(Film film) {
         if (film.getName() == null || film.getName().isBlank()) {
-            log.warn("Пустой name");
+            log.warn("Пустое значение name недопустимо");
             throw new ValidationException("Название не может быть пустым");
         }
         if (film.getDescription().length() > 200) {
@@ -35,7 +35,7 @@ public class FilmController {
         }
         if (film.getReleaseDate().isBefore(birthdayOfCinema)) {
             log.warn("Дата релиза ранее появления кинематографа (28.12.1895)");
-            throw new ValidationException("Некорректная дата релиза");
+            throw new ValidationException("Некорректная дата релиза, дата релиза не может быть меньше даты 28.12.1895");
         }
         if (film.getDuration() < 0) {
             log.warn("Продолжительность фильма меньше 0");

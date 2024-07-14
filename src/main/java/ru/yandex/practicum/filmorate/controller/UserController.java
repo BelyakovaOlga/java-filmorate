@@ -24,7 +24,7 @@ public class UserController {
 
     private void validateDataOfUser(User user) {
         if (user.getEmail() == null || user.getEmail().isBlank()) {
-            log.warn("Пустое значение Email");
+            log.warn("Пустое значение Email недопустимо");
             throw new ValidationException("Имейл должен быть указан");
         }
         if (!user.getEmail().contains("@")) {
@@ -32,15 +32,15 @@ public class UserController {
             throw new ValidationException("Некорректный имейл");
         }
         if (user.getLogin() == null || user.getLogin().isBlank()) {
-            log.warn("Login пустой");
+            log.warn("Пустое значение Login недопустимо");
             throw new ValidationException("Логин должен быть указан");
         }
         if (user.getLogin().contains(" ")) {
-            log.warn("Login содержит пробелы");
+            log.warn("Использование проблелов в поле Login недопустимо");
             throw new ValidationException("В логине присутсвуют неразрешенные символы (пробелы)");
         }
         if (user.getBirthday() != null && user.getBirthday().isAfter(LocalDate.now())) {
-            log.warn("Birthday не может быть больше текущей даты");
+            log.warn("Поле Birthday не может быть больше текущей даты");
             throw new ValidationException("Некорректная дата рождения");
         }
     }
