@@ -15,4 +15,6 @@ public class Film {
     String description;
     LocalDate releaseDate;
     Integer duration;
+    Integer likes;
 }
+
