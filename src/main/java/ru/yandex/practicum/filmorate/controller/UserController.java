@@ -14,19 +14,19 @@ import java.util.*;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
-
-    @GetMapping("/users")
+    static final String userPath = "/users";
+    @GetMapping(userPath)
     public Collection<User> findAll() {
         return userService.findAll();
     }
 
-    @PostMapping("/users")
+    @PostMapping(userPath)
     @ResponseStatus(HttpStatus.CREATED)
     public User create(@RequestBody User user) {
         return userService.create(user);
     }
 
-    @PutMapping("/users")
+    @PutMapping(userPath)
     public User update(@RequestBody User newUser) {
         return userService.update(newUser);
     }
@@ -36,13 +36,13 @@ public class UserController {
         return userService.findById(id);
     }
 
-    @PutMapping("/users/{id}/friends/{friendId}")
-    public void addFriend(@PathVariable("id") long id, @PathVariable("friendId") long friendId) {
+    @PutMapping("/users/{id}/friends/{friend-id}")
+    public void addFriend(@PathVariable("id") long id, @PathVariable("friend-id") long friendId) {
         userService.addFriend(id, friendId);
     }
 
-    @DeleteMapping("/users/{id}/friends/{friendId}")
-    public void deleteFriend(@PathVariable long id, @PathVariable long friendId) {
+    @DeleteMapping("/users/{id}/friends/{friend-id}")
+    public void deleteFriend(@PathVariable long id, @PathVariable("friend-id") long friendId) {
         userService.deleteFriend(id, friendId);
     }
 
@@ -51,8 +51,8 @@ public class UserController {
         return userService.getFriends(id);
     }
 
-    @GetMapping("/users/{id}/friends/common/{otherId}")
-    public List<User> getMutualFriends(@PathVariable long id, @PathVariable long otherId) {
+    @GetMapping("/users/{id}/friends/common/{other-id}")
+    public List<User> getMutualFriends(@PathVariable long id, @PathVariable("other-id") long otherId) {
         return userService.getMutualFriends(id, otherId);
     }
 }

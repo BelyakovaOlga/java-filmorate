@@ -14,8 +14,8 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class FilmController {
     private final FilmService filmService;
-
-    @GetMapping("/films")
+    static final String pathFilm = "/films";
+    @GetMapping(pathFilm)
     public Collection<Film> findAll() {
         return filmService.findAll();
     }
@@ -25,12 +25,12 @@ public class FilmController {
         return filmService.findPopular(count);
     }
 
-    @PostMapping("/films")
+    @PostMapping(pathFilm)
     public Film create(@RequestBody Film film) {
         return filmService.create(film);
     }
 
-    @PutMapping("/films")
+    @PutMapping(pathFilm)
     public Film update(@RequestBody Film newFilm) {
         return filmService.update(newFilm);
     }
@@ -40,13 +40,13 @@ public class FilmController {
         return filmService.findById(id);
     }
 
-    @PutMapping("/films/{id}/like/{userId}")
-    public void setLike(@PathVariable long id, @PathVariable long userId) {
+    @PutMapping("/films/{id}/like/{user-id}")
+    public void setLike(@PathVariable long id, @PathVariable("user-id") long userId) {
         filmService.setLike(id, userId);
     }
 
-    @DeleteMapping("/films/{id}/like/{userId}")
-    public void deleteLink(@PathVariable long id, @PathVariable long userId) {
+    @DeleteMapping("/films/{id}/like/{user-id}")
+    public void deleteLink(@PathVariable long id, @PathVariable("user-id") long userId) {
         filmService.deleteLike(id, userId);
     }
 }
