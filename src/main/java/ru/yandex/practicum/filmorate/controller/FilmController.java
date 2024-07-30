@@ -15,6 +15,7 @@ import java.util.Collection;
 public class FilmController {
     private final FilmService filmService;
     static final String pathFilm = "/films";
+
     @GetMapping(pathFilm)
     public Collection<Film> findAll() {
         return filmService.findAll();

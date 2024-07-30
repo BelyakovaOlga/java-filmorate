@@ -15,6 +15,7 @@ import java.util.*;
 public class UserController {
     private final UserService userService;
     static final String userPath = "/users";
+
     @GetMapping(userPath)
     public Collection<User> findAll() {
         return userService.findAll();
