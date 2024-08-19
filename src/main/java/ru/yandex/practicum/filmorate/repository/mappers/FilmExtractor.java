@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 @Component
-public class FilmExtractor implements ResultSetExtractor <Map<Long, Film>> {
+public class FilmExtractor implements ResultSetExtractor <Map<Long,Film>> {
 
     @Override
     public  Map<Long,Film> extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -30,7 +30,7 @@ public class FilmExtractor implements ResultSetExtractor <Map<Long, Film>> {
                 film.setId(rs.getLong("f_id"));
                 film.setName(rs.getString("f_name"));
                 film.setDescription(rs.getString("f_descr"));
-                if (rs.getDate("f_rDate")!= null) {
+                if (rs.getDate("f_rDate") != null) {
                     film.setReleaseDate(rs.getDate("f_rDate").toLocalDate());
                 }
                 film.setDuration(rs.getInt("f_dur"));
