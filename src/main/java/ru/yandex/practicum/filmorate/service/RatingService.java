@@ -8,5 +8,6 @@ import java.util.Collection;
 @Service
 public interface RatingService {
     Collection<Rating> findAll();
+
     Rating findById(long id);
 }
