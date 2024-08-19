@@ -15,9 +15,9 @@ import java.util.Map;
 @Component
 public class FilmExtractorWithoutGenre implements ResultSetExtractor<Map<Long, Film>> {
     @Override
-    public  Map<Long,Film> extractData(ResultSet rs) throws SQLException, DataAccessException {
+    public Map<Long, Film> extractData(ResultSet rs) throws SQLException, DataAccessException {
         Map<Long, Film> data = new LinkedHashMap<>();
-        Film            film = null;
+        Film film = null;
 
         while (rs.next()) {
             Long id = rs.getLong("f_id");
@@ -37,7 +37,7 @@ public class FilmExtractorWithoutGenre implements ResultSetExtractor<Map<Long, F
                 film.setMpa(rating);
                 film.setGenres(new LinkedHashSet<Genre>());
             }
-            data.put(film.getId(),film);
+            data.put(film.getId(), film);
         }
         return data;
     }
