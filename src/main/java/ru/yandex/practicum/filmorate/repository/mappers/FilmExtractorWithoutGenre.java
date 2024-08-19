@@ -12,8 +12,9 @@ import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
+
 @Component
-public class FilmExtractorWithoutGenre implements ResultSetExtractor<Map<Long, Film>> {
+public class FilmExtractorWithoutGenre implements ResultSetExtractor<Map<Long,Film>> {
     @Override
     public Map<Long, Film> extractData(ResultSet rs) throws SQLException, DataAccessException {
         Map<Long, Film> data = new LinkedHashMap<>();
