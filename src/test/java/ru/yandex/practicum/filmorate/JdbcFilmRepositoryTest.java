@@ -26,20 +26,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("JdbcFilmRepository")
 public class JdbcFilmRepositoryTest {
     private final FilmRepository filmRepository;
+
     static Rating testRating() {
         Rating rating = new Rating();
         rating.setId(1L);
         rating.setName("G");
         return rating;
     }
+
     static Genre testGenre() {
         Genre genre = new Genre();
         genre.setId(1L);
         genre.setName("Криминал");
         return genre;
     }
+
     static Film compareTestFilm() {
-        LinkedHashSet<Genre>  setGenres = new LinkedHashSet<>();
+        LinkedHashSet<Genre> setGenres = new LinkedHashSet<>();
         setGenres.add(testGenre());
         Film film = new Film();
         film.setId(1L);
@@ -48,14 +51,15 @@ public class JdbcFilmRepositoryTest {
         film.setMpa(testRating());
         film.setGenres(setGenres);
         film.setDuration(113);
-        film.setReleaseDate(LocalDate.of(2019,12,03));
+        film.setReleaseDate(LocalDate.of(2019, 12, 03));
         return film;
     }
+
     static Film createTestFilm(Long id) {
-        LinkedHashSet<Genre>  setGenres = new LinkedHashSet<>();
+        LinkedHashSet<Genre> setGenres = new LinkedHashSet<>();
         setGenres.add(testGenre());
         Film film = new Film();
-        if (id !=0) {
+        if (id != 0) {
             film.setId(id);
         }
         film.setDescription("Описание к фильму");
@@ -63,10 +67,11 @@ public class JdbcFilmRepositoryTest {
         film.setMpa(testRating());
         film.setGenres(setGenres);
         film.setDuration(113);
-        film.setReleaseDate(LocalDate.of(2019,12,03));
+        film.setReleaseDate(LocalDate.of(2019, 12, 03));
 
         return film;
     }
+
     @Test
     @DisplayName("должен находиться фильм по ID")
     public void shouldReturnFilmById() {
@@ -78,6 +83,7 @@ public class JdbcFilmRepositoryTest {
                 .usingRecursiveComparison()
                 .isEqualTo(compareTestFilm());
     }
+
     @Test
     @DisplayName("должен быть создан Film")
     public void shouldCreateFilm() {
@@ -87,6 +93,7 @@ public class JdbcFilmRepositoryTest {
                 .usingRecursiveComparison()
                 .isEqualTo(createTestFilm(2L));
     }
+
     @Test
     @DisplayName("должен обновить название фильма")
     public void shouldUpdateFilm() {
@@ -99,10 +106,11 @@ public class JdbcFilmRepositoryTest {
         assertThat(filmOptional.get().getName())
                 .isEqualTo("Новое_Имя_Фильма");
     }
+
     @Test
     @DisplayName("должен поставиться лайк фильму")
     public void shouldSetLikeToFilm() {
-        filmRepository.setLike(1L,1L);
+        filmRepository.setLike(1L, 1L);
 
         List<Film> filmList = filmRepository.findPopular(1).stream().toList();
         assertThat(filmList.get(0).getId())

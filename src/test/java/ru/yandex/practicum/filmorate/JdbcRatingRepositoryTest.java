@@ -9,8 +9,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.context.annotation.Import;
 import ru.yandex.practicum.filmorate.model.Rating;
 import ru.yandex.practicum.filmorate.repository.JdbcRatingRepository;
-import ru.yandex.practicum.filmorate.repository.RatingRepository;
-
 
 import java.util.List;
 
@@ -27,10 +25,11 @@ public class JdbcRatingRepositoryTest {
     @Test
     @DisplayName("должен получить список всех Mpa")
     public void shouldGetAllMPA() {
-        List<Rating>   listMPA = ratingRepository.findAll().stream().toList();
+        List<Rating> listMPA = ratingRepository.findAll().stream().toList();
 
 
         assertThat(listMPA.size())
-                  .isEqualTo(5);
+                .isEqualTo(5);
     }
 }
+

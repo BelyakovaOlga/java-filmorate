@@ -24,24 +24,27 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("JdbcUserRepository")
 class JdbcUserRepositoryTest {
 	private final UserRepository userRepository;
-    public static final long FindUser_Id = 1L;
+	public static final long FindUser_Id = 1L;
+
 	static User compareTestUser(Long id) {
 		User user = new User();
 		user.setId(id);
 		user.setEmail("test@mail.com");
 		user.setLogin("UserName");
 		user.setName("UserName");
-		user.setBirthday(LocalDate.of(1990,10,20));
+		user.setBirthday(LocalDate.of(1990, 10, 20));
 		return user;
 	}
+
 	static User createTestUser() {
 		User user = new User();
 		user.setEmail("test@mail.com");
 		user.setLogin("UserName");
 		user.setName("UserName");
-		user.setBirthday(LocalDate.of(1990,10,20));
+		user.setBirthday(LocalDate.of(1990, 10, 20));
 		return user;
 	}
+
 	@Test
 	@DisplayName("должен находиться пользователь по ID")
 	public void shouldReturnUserById() {
@@ -54,6 +57,7 @@ class JdbcUserRepositoryTest {
 				.usingRecursiveComparison()
 				.isEqualTo(compareTestUser(FindUser_Id));
 	}
+
 	@Test
 	@DisplayName("должен быть создан пользователь")
 	public void shouldCreateUser() {
@@ -63,6 +67,7 @@ class JdbcUserRepositoryTest {
 				.usingRecursiveComparison()
 				.isEqualTo(compareTestUser(userNew.getId()));
 	}
+
 	@Test
 	@DisplayName("должен обновить имя пользователя")
 	public void shouldUpdateUser() {
@@ -75,6 +80,7 @@ class JdbcUserRepositoryTest {
 		assertThat(userOptional.get().getName())
 				.isEqualTo("Новое_Имя");
 	}
+
 	@Test
 	@DisplayName("должен быть получен списко всех пользователей и размер списка должен соответсвовать кол-ву Users в BD")
 	public void shouldDeleteUser() {
@@ -82,6 +88,7 @@ class JdbcUserRepositoryTest {
 		assertThat(listUsers.size())
 				.isEqualTo(2);
 	}
+
 	@Test
 	@DisplayName("должен быть добавлен friend (размер спика друзей должен быть 1)")
 	public void shouldAddFriendToUser() {
@@ -97,3 +104,4 @@ class JdbcUserRepositoryTest {
 				.isEqualTo(1);
 	}
 }
+
