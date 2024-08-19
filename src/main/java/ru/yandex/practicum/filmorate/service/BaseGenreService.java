@@ -7,6 +7,7 @@ import ru.yandex.practicum.filmorate.model.Genre;
 import ru.yandex.practicum.filmorate.repository.GenreRepository;
 
 import java.util.Collection;
+
 @Service
 @RequiredArgsConstructor
 public class BaseGenreService implements GenreService {
