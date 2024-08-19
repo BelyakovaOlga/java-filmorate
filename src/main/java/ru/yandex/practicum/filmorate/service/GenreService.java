@@ -8,5 +8,7 @@ import java.util.Collection;
 @Service
 public interface GenreService {
     Collection<Genre> findAll();
+
     Genre findById(long id);
 }
+
