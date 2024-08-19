@@ -61,7 +61,7 @@ public class BaseFilmService implements FilmService {
             final List<Long> genreIds = filmNew.getGenres().stream().map(Genre::getId).toList();
             final Collection<Genre> genres = genreRepository.findByIds(genreIds);
             if (genres.size() != genreIds.size()) {
-                throw new ValidationException("Жанры не найдены");
+                throw new ValidationException("Для фильма " +  filmNew.getId() + " указаны несуществующие жанры");
             }
         }
         return filmRepository.update(filmNew);
