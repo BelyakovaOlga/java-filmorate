@@ -1,18 +1,17 @@
-package ru.yandex.practicum.filmorate.storage;
+package ru.yandex.practicum.filmorate.repository;
 
-import org.springframework.stereotype.Component;
 import ru.yandex.practicum.filmorate.model.User;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
-@Component
-public interface UserStorage {
-
+public interface UserRepository {
     public User create(User user);
 
-    public User update(User newUser);
+    User update(User newUser);
 
-    public Optional<User> findById(long id);
+    Optional<User> findById(long id);
 
     Collection<User> findAll();
 
@@ -24,4 +23,3 @@ public interface UserStorage {
 
     List<User> getMutualFriends(User user, User otherUser);
 }
-

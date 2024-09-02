@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.filmorate.model.User;
 import ru.yandex.practicum.filmorate.service.UserService;
+import ru.yandex.practicum.filmorate.service.ValidateService;
 
 import java.util.*;
 
@@ -14,6 +15,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final ValidateService validateService;
     static final String userPath = "/users";
 
     @GetMapping(userPath)
@@ -24,11 +26,13 @@ public class UserController {
     @PostMapping(userPath)
     @ResponseStatus(HttpStatus.CREATED)
     public User create(@RequestBody User user) {
+        validateService.validateUser(user);
         return userService.create(user);
     }
 
     @PutMapping(userPath)
     public User update(@RequestBody User newUser) {
+        validateService.validateUser(newUser);
         return userService.update(newUser);
     }
 
@@ -57,3 +61,4 @@ public class UserController {
         return userService.getMutualFriends(id, otherId);
     }
 }
+
